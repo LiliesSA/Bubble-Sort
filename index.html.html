@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort with Toy Blocks</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        .block-party {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .block {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 2px solid #333;
+            margin: 0 5px;
+            transition: transform 0.3s;
+        }
+
+        .block:nth-child(1) {
+            background-color: #ffcccb; /* Light Pink */
+        }
+
+        .block:nth-child(3) {
+            background-color: #a4c2f4; /* Light Blue */
+        }
+
+        .celebration {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Bubble Sort with Toy Blocks</h1>
+
+    <div class="block-party">
+        <!-- Blocks will be dynamically added here -->
+    </div>
+
+    <h2>Storytelling:</h2>
+
+    <p><strong>Once upon a time,</strong> there were colorful toy blocks having a party, and they wanted to stand in a line from the smallest to the biggest block so they could see everything clearly.</p>
+
+    <h2>Introduction:</h2>
+
+    <p><strong>Show the Toy Blocks:</strong> Display a set of toy blocks with various colors and sizes.</p>
+
+    <h2>The Party Line:</h2>
+
+    <p><strong>The Party Line:</strong> Explain that the blocks are having a party and want to stand in a line from the smallest to the biggest.</p>
+
+    <h2>Bubble Sort Explanation:</h2>
+
+    <p><strong>Bubble Sort as a Game:</strong> Introduce the idea of a game called "Bubble Sort" where the blocks help each other to get in the right order.</p>
+
+    <p><strong>Comparing Blocks:</strong> Demonstrate how the blocks compare themselves with their neighbors to check who is bigger and who is smaller.</p>
+
+    <p><strong>Swapping Places:</strong> If a block finds that it's bigger than the one next to it, they politely swap places. Example: "Oh, I'm bigger than you! Let's switch places so we can stand in the right order."</p>
+
+    <h2>Repeat the Game:</h2>
+
+    <p><strong>Repeat the Game:</strong> Repeat the game until all the blocks are standing in the correct order.</p>
+
+    <h2>Conclusion:</h2>
+
+    <p class="celebration"><strong>Celebration:</strong> Celebrate the success of the blocks for arranging themselves in the right order.</p>
+
+    <h2>Story Ending:</h2>
+
+    <p class="celebration"><strong>Story Ending:</strong> Conclude the story by saying, "And that's how the toy blocks had a fun party and stood in a line from the smallest to the biggest using Bubble Sort!"</p>
+
+    <h2>Key Takeaways:</h2>
+
+    <ul>
+        <li><strong>Ordering Fun:</strong> Emphasize that bubble sort is like a game where the blocks help each other have the most enjoyable party.</li>
+        <li><strong>Size Matters:</strong> Stress the idea that the blocks care about their size and want to make sure everyone gets a good view.</li>
+        <li><strong>Teamwork:</strong> Encourage the concept of teamwork and cooperation among the blocks.</li>
+    </ul>
+    import random
+    <script>
+        // Function to create toy blocks
+        function createToyBlocks() {
+            const blockParty = document.querySelector('.block-party');
+    
+            // Add unsorted toy blocks with different colors
+            const unsortedNumbers = [5, 4, 3, 2, 1]; // Unsorted array
+            for (let i = 0; i < unsortedNumbers.length; i++) {
+                const block = document.createElement('div');
+                block.className = 'block';
+                block.textContent = unsortedNumbers[i];
+                block.style.backgroundColor = getRandomColor();
+                blockParty.appendChild(block);
+            }
+        }
+
+        // Function to get a random color
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            return `hsl(${hue}, 70%, 80%)`;
+        }
+
+// Function to simulate the bubble sort for an unsorted array
+async function bubbleSortSimulation() {
+    const blocks = document.querySelectorAll('.block');
+
+    for (let i = 0; i < blocks.length - 1; i++) {
+        for (let j = 0; j < blocks.length - 1 - i; j++) {
+            const block1 = parseInt(blocks[j].textContent);
+            const block2 = parseInt(blocks[j + 1].textContent);
+
+            // Highlight the current blocks being compared
+            blocks[j].style.transform = 'scale(1.2)';
+            blocks[j + 1].style.transform = 'scale(1.2)';
+
+            await sleep(500);
+
+            if (block1 > block2) {
+                // Swap blocks
+                const tempText = blocks[j].textContent;
+                blocks[j].textContent = blocks[j + 1].textContent;
+                blocks[j + 1].textContent = tempText;
+
+                await sleep(2500);
+            }
+
+            // Reset scale after comparison
+            blocks[j].style.transform = 'scale(1)';
+            blocks[j + 1].style.transform = 'scale(1)';
+        }
+    }
+
+    // Highlight sorted blocks
+    blocks.forEach(block => block.style.backgroundColor = 'limegreen');
+}
+
+
+        // Function to simulate sleep/delay
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Run the simulation when the page loads
+        window.onload = async function () {
+            createToyBlocks();
+            await sleep(500); // Delay before starting the simulation
+            await bubbleSortSimulation();
+        };
+    </script>
+
+</body>
+
+</html>
